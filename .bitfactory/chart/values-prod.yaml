@@ -1,0 +1,29 @@
+# Common/default values for production environment.
+# -------------------------------------------------
+# Environment configuration.
+environments:
+  main:
+    APP_ENV: production
+
+# Deployment configuration.
+deployments:
+  main:
+    containers:
+      nuxt:
+        resourceLimits:
+          cpu: 800m
+          memory: 1448Mi
+    autoscaler:
+      enabled: true
+      maxReplicas: 8
+      minReplicas: 1
+      targetAverageUtilization: 75
+
+# Ingress configuration.
+ingresses:
+  main:
+    letsEncrypt:
+      clusterIssuer: letsencrypt-production
+    rules:
+      default:
+        host: flowflow.com

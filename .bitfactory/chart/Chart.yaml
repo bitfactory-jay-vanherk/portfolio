@@ -1,0 +1,6 @@
+# No need to edit this file, it is only required to be a valid Helm chart.
+apiVersion: v2
+appVersion: "1.0"
+description: Bitfactory project
+name: applications
+version: 0.1.0

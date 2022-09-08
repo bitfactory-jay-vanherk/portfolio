@@ -1,0 +1,11 @@
+# Common/default values for test environment.
+# -------------------------------------------
+# Environment configuration.
+environments:
+  main:
+    APP_ENV: test
+
+ingresses:
+  main:
+    annotations:
+      nginx.ingress.kubernetes.io/whitelist-source-range: 83.219.76.26/32

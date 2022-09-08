@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^5.3.2",
+    "autoprefixer": "^10.4.8",
+    "nuxt": "3.0.0-rc.9"
+  },
+  "name": "portfolio",
+  "description": "Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}

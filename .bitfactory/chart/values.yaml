@@ -1,0 +1,39 @@
+# Common/default values for all environments.
+# -------------------------------------------
+project:
+  type: "nuxtjs_3"
+  key: "FLOWFLOW"
+
+# Slack deployment notifications.
+notifications:
+  slack:
+    channel: "#team-flowflow"
+    reportStatus:
+      - failure
+      - success
+
+# The services to deploy. For each deployment we specify their containers, replicas, volumes and so on.
+deployments:
+  main:
+    containers:
+      nuxt:
+        image: nuxt
+        user: 3000
+        environmentName: main
+    replicas: 1
+    service:
+      enabled: true
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+
+# An Ingress (or Route in case of OpenShift) is the entry point to a service from the outside world.
+ingresses:
+  main:
+    rules:
+      default:
+        deploymentName: main
+
+# Reloader configuration. This adds annotations to Deployments for auto-reloading on ConfigMap or Secret changes.
+reloader:
+  enabled: true

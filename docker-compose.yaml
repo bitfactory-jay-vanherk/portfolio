@@ -1,0 +1,40 @@
+version: '3.7'
+
+# @TODO: the secure WebSocket port does not work, it should be available through WSS.
+# it does work through http://localhost:3000/, but not https://flowflowio.test/
+# More information here https://dev.to/vishalraj82/using-https-in-docker-for-local-development-nc7
+# And here https://stackoverflow.com/questions/50810165/run-docker-service-on-https
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./.bitfactory/docker/main/Dockerfile
+      target: node_dev
+    volumes:
+      - ./:/app:cached
+
+  nuxt:
+    build:
+      context: .
+      dockerfile: ./.bitfactory/docker/main/Dockerfile
+      target: nuxt_dev
+    labels:
+      - "traefik.http.routers.node-portfolio.rule=Host(`$APP_DOMAIN`)"
+      - "traefik.http.routers.node-portfolio.tls=false"
+      - "traefik.enable=true"
+      - "traefik.docker.network=bitf"
+    networks:
+      - bitf
+      - portfolio
+    ports:
+      - '24678:24678'
+    volumes:
+      - ./:/app:cached
+
+networks:
+  bitf:
+    external: true
+    name: bitf
+  portfolio:
+    driver: bridge
